@@ -856,7 +856,8 @@ static const letter_code *get_letter_code_for_combining_utf8(const char *prev_ch
 encoding_type encoding_determine(language_type language)
 {
     // Determine encoding based on language:
-    // - Windows-1250 (Central/Eastern Europe) is used in Polish only
+    // - Windows-1250 (Central/Eastern Europe) is used in Polish
+    // - Hungarian uses Windows-1250 conversion rules, but custom font mapping
     // - Windows-1251 (Cyrillic) is used in Russian only
     // - Windows-1253 (Greek) is used in Greek only
     // - Windows-950 (Big5) is used in Traditional Chinese only
@@ -865,6 +866,9 @@ encoding_type encoding_determine(language_type language)
     if (language == LANGUAGE_POLISH) {
         data.to_utf8_table = HIGH_TO_UTF8_EASTERN;
         data.encoding = ENCODING_EASTERN_EUROPE;
+    } else if (language == LANGUAGE_HUNGARIAN) {
+        data.to_utf8_table = HIGH_TO_UTF8_EASTERN;
+        data.encoding = ENCODING_HUNGARIAN;
     } else if (language == LANGUAGE_CZECH) {
         data.to_utf8_table = HIGH_TO_UTF8_CZECH;
         data.encoding= ENCODING_CZECH;

@@ -505,7 +505,12 @@ static int image_y_offset_japanese(uint8_t c, int image_height, int line_height)
 void font_set_encoding(encoding_type encoding)
 {
     data.multibyte = MULTIBYTE_NONE;
-    if (encoding == ENCODING_EASTERN_EUROPE) {
+    if (encoding == ENCODING_HUNGARIAN) {
+        // Hungarian fan translation uses cp1250 bytes but custom font slots
+        // aligned with the default Latin font mapping.
+        data.font_mapping = CHAR_TO_FONT_IMAGE_DEFAULT;
+        data.font_definitions = DEFINITIONS_DEFAULT;
+    } else if (encoding == ENCODING_EASTERN_EUROPE) {
         data.font_mapping = CHAR_TO_FONT_IMAGE_EASTERN;
         data.font_definitions = DEFINITIONS_EASTERN;
     } else if (encoding == ENCODING_CZECH) {

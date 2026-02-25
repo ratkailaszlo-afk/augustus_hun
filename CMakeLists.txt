@@ -735,6 +735,7 @@ set(TRANSLATION_FILES
     ${PROJECT_SOURCE_DIR}/src/translation/french.c
     ${PROJECT_SOURCE_DIR}/src/translation/german.c
     ${PROJECT_SOURCE_DIR}/src/translation/greek.c
+    ${PROJECT_SOURCE_DIR}/src/translation/hungarian.c
     ${PROJECT_SOURCE_DIR}/src/translation/italian.c
     ${PROJECT_SOURCE_DIR}/src/translation/japanese.c
     ${PROJECT_SOURCE_DIR}/src/translation/korean.c

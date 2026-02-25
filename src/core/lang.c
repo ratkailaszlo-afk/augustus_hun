@@ -27,10 +27,14 @@
 #define FILE_MM_ENG "c3_mm.eng"
 #define FILE_TEXT_RUS "c3.rus"
 #define FILE_MM_RUS "c3_mm.rus"
+#define FILE_TEXT_HUN "c3.hun"
+#define FILE_MM_HUN "c3_mm.hun"
 #define FILE_EDITOR_TEXT_ENG "c3_map.eng"
 #define FILE_EDITOR_MM_ENG "c3_map_mm.eng"
 #define FILE_EDITOR_TEXT_RUS "c3_map.rus"
 #define FILE_EDITOR_MM_RUS "c3_map_mm.rus"
+#define FILE_EDITOR_TEXT_HUN "c3_map.hun"
+#define FILE_EDITOR_MM_HUN "c3_map_mm.hun"
 
 static struct {
     struct {
@@ -52,6 +56,9 @@ static int file_exists_in_dir(const char *dir, const char *file)
 
 int lang_dir_is_valid(const char *dir)
 {
+    if (file_exists_in_dir(dir, FILE_TEXT_HUN) && file_exists_in_dir(dir, FILE_MM_HUN)) {
+        return 1;
+    }
     if (file_exists_in_dir(dir, FILE_TEXT_ENG) && file_exists_in_dir(dir, FILE_MM_ENG)) {
         return 1;
     }
@@ -348,13 +355,16 @@ int lang_load(int is_editor)
 {
     if (is_editor) {
         return
+            load_files(FILE_EDITOR_TEXT_HUN, FILE_EDITOR_MM_HUN, MAY_BE_LOCALIZED) ||
             load_files(FILE_EDITOR_TEXT_RUS, FILE_EDITOR_MM_RUS, MAY_BE_LOCALIZED) ||
             load_files(FILE_EDITOR_TEXT_ENG, FILE_EDITOR_MM_ENG, MAY_BE_LOCALIZED);
     }
     // Prefer language files from localized dir, fall back to main dir
     return
+        load_files(FILE_TEXT_HUN, FILE_MM_HUN, MUST_BE_LOCALIZED) ||
         load_files(FILE_TEXT_ENG, FILE_MM_ENG, MUST_BE_LOCALIZED) ||
         load_files(FILE_TEXT_RUS, FILE_MM_RUS, MUST_BE_LOCALIZED) ||
+        load_files(FILE_TEXT_HUN, FILE_MM_HUN, NOT_LOCALIZED) ||
         load_files(FILE_TEXT_ENG, FILE_MM_ENG, NOT_LOCALIZED) ||
         load_files(FILE_TEXT_RUS, FILE_MM_RUS, NOT_LOCALIZED);
 }
