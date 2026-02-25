@@ -19,6 +19,9 @@ int city_buildings_has_lighthouse(void);
 int city_buildings_has_caravanserai(void);
 int city_buildings_get_caravanserai(void);
 
+int city_buildings_has_portorium(void);
+int city_buildings_get_portorium(void);
+
 int city_buildings_has_city_mint(void);
 
 int city_buildings_triumphal_arch_available(void);

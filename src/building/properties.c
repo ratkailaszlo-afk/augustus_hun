@@ -1911,6 +1911,16 @@ static building_properties properties[BUILDING_TYPE_MAX] = {
         .building_model_data = {.cost = 500, .desirability_value = -10, .desirability_step = 2,
             .desirability_step_size = 3, .desirability_range = 4, .laborers = 20}
      },
+     [BUILDING_PORTORIUM] = {
+        .size = 3,
+        .fire_proof = 1,
+        .sound_id = SOUND_CITY_DEPOT,
+        .custom_asset.group = "Monuments",
+        .custom_asset.id = "Portorium_C_ON",
+        .event_data.attr = "portorium",
+        .building_model_data = {.cost = 450, .desirability_value = -4, .desirability_step = 1,
+            .desirability_step_size = 2, .desirability_range = 3, .laborers = 12}
+     },
      [BUILDING_ROOFED_GARDEN_WALL] = {
         .venus_gt_bonus = 1,
         .size = 1,

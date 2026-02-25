@@ -142,6 +142,10 @@
 			<frame group="this" image="City_Mint_ON_05"/>
 		</animation>
 	</image>
+	<!-- Note: Portorium (Customs House) climate variants -->
+	<image id="Portorium_C_ON" src="Portorium_C_ON" width="178" height="117" isometric="true"/>
+	<image id="Portorium_N_ON" src="Portorium_N_ON" width="178" height="117" isometric="true"/>
+	<image id="Portorium_S_ON" src="Portorium_S_ON" width="178" height="117" isometric="true"/>
 	<!-- Note: Education Monument/s -->
 	<!-- Note: Great Library 0%, 25%, 50%, and 75% construction phases -->
 	<!--image id="Great_Library_Construction_01" width="238" height="129" isometric="true">

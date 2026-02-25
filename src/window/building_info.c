@@ -186,6 +186,7 @@ static int get_height_id(void)
             case BUILDING_PANELLED_GARDEN_WALL:
             case BUILDING_PALISADE:
             case BUILDING_GLADIATOR_STATUE:
+            case BUILDING_PORTORIUM:
                 return HEIGHT_1_16_BLOCKS;
 
                 //288px
@@ -705,6 +706,8 @@ static void draw_background(void)
             window_building_draw_work_camp(&context);
         } else if (btype == BUILDING_ARCHITECT_GUILD) {
             window_building_draw_architect_guild(&context);
+        } else if (btype == BUILDING_PORTORIUM) {
+            window_building_draw_portorium(&context);
         } else if (btype == BUILDING_TAVERN) {
             if (context.show_special_orders) {
                 window_building_draw_distributor_orders(&context, translation_for(TR_TAVERN_SPECIAL_ORDERS_HEADER));

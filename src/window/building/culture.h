@@ -83,6 +83,8 @@ void window_building_draw_work_camp(building_info_context* c);
 
 void window_building_draw_architect_guild(building_info_context* c);
 
+void window_building_draw_portorium(building_info_context* c);
+
 void window_building_draw_tavern(building_info_context* c);
 
 void window_building_draw_grand_garden(building_info_context* c);

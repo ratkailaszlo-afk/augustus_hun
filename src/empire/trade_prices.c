@@ -9,6 +9,8 @@
 #include "trade_prices.h"
 
 #define MIN_PRICE 1
+#define PORTORIUM_EXPORT_BONUS_PERCENT 10
+#define PORTORIUM_IMPORT_DISCOUNT_PERCENT 10
 
 struct trade_price {
     int32_t buy;
@@ -51,6 +53,19 @@ static int trade_get_lighthouse_factor(int percent)
     return lighthouse_percent;
 }
 
+static int trade_get_portorium_factor(int percent)
+{
+    int portorium_percent = 0;
+
+    if (city_buildings_has_portorium()) {
+        building *b = building_get(city_buildings_get_portorium());
+        if (b && b->state == BUILDING_STATE_IN_USE) {
+            portorium_percent = trade_percentage_from_laborers(percent, b);
+        }
+    }
+    return portorium_percent;
+}
+
 static int trade_factor_sell(int land_trader)
 {
     int percent = 0;
@@ -71,6 +86,7 @@ static int trade_factor_sell(int land_trader)
             percent -= trade_get_lighthouse_factor(POLICY_2_MALUS_PERCENT); // trader buy 0% less
         }
     }
+    percent += trade_get_portorium_factor(PORTORIUM_EXPORT_BONUS_PERCENT);
     return percent;
 }
 
@@ -94,6 +110,7 @@ static int trade_factor_buy(int land_trader)
             percent -= trade_get_lighthouse_factor(POLICY_2_BONUS_PERCENT); // player buy 20% less
         }
     }
+    percent -= trade_get_portorium_factor(PORTORIUM_IMPORT_DISCOUNT_PERCENT);
     return percent;
 }
 

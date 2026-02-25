@@ -121,7 +121,7 @@ static int show_building_logistics(const building *b)
     return b->type == BUILDING_WAREHOUSE || b->type == BUILDING_WAREHOUSE_SPACE ||
         b->type == BUILDING_GRANARY || b->type == BUILDING_DOCK ||
         b->type == BUILDING_DEPOT || b->type == BUILDING_LIGHTHOUSE ||
-        b->type == BUILDING_ARMOURY;
+        b->type == BUILDING_ARMOURY || b->type == BUILDING_PORTORIUM;
 }
 
 static int show_building_storages(const building *b)

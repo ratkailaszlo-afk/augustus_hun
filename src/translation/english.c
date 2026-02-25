@@ -406,6 +406,8 @@ static translation_string all_strings[] = {
     {TR_BUILDING_LIGHTHOUSE, "Lighthouse"},
     {TR_BUILDING_CARAVANSERAI, "Caravanserai"},
     {TR_BUILDING_CARAVANSERAI_DESC, "Caravanserai is fully operational. Merchant caravans shelter here to rest and feed their animals. Land trade disruptions last half as long."},
+    {TR_BUILDING_PORTORIUM, "Portorium"},
+    {TR_BUILDING_PORTORIUM_DESC, "Portorium manages customs and prices for all trade. With full staffing, imports are 10% cheaper and exports earn 10% more across both land and sea routes."},
     {TR_CARAVANSERAI_SPECIAL_ORDERS_HEADER, "Caravanserai instructions"},
     {TR_BUILDING_CARAVANSERAI_PHASE_1, "(Foundation)"},
     {TR_BUILDING_CARAVANSERAI_PHASE_2, "(Colonnade)"},

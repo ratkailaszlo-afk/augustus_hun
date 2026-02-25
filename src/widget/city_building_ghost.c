@@ -402,6 +402,9 @@ static int is_fully_blocked(int map_x, int map_y, building_type type, int buildi
     if (type == BUILDING_CARAVANSERAI && city_buildings_has_caravanserai()) {
         return 1;
     }
+    if (type == BUILDING_PORTORIUM && city_buildings_has_portorium()) {
+        return 1;
+    }
     if (type == BUILDING_BARRACKS && city_buildings_has_barracks() && !config_get(CONFIG_GP_CH_MULTIPLE_BARRACKS)) {
         return 1;
     }

@@ -421,6 +421,8 @@ static translation_string all_strings[] = {
     {TR_BUILDING_LIGHTHOUSE, "Világítótorony"},
     {TR_BUILDING_CARAVANSERAI, "Karavánszeráj"},
     {TR_BUILDING_CARAVANSERAI_DESC, "A Caravanserai teljesen üzemképes. Kereskedelmi karavánok mennek itt pihenni és etetni állataikat. A földkereskedelem fennakadása feleannyi ideig tart."},
+    {TR_BUILDING_PORTORIUM, "Portorium"},
+    {TR_BUILDING_PORTORIUM_DESC, "A Portorium kezeli a vámot és az árakat minden kereskedelmi útvonalon. Teljes személyzettel az import 10%-kal olcsóbb, az export pedig 10%-kal többet hoz a szárazföldi és tengeri kereskedelemben is."},
     {TR_CARAVANSERAI_SPECIAL_ORDERS_HEADER, "Karavánszeráj utasítások"},
     {TR_BUILDING_CARAVANSERAI_PHASE_1, "(Alapítvány)"},
     {TR_BUILDING_CARAVANSERAI_PHASE_2, "(Oszlopsor)"},

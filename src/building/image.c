@@ -842,6 +842,15 @@ int building_image_get(const building *b)
                             return assets_get_image_id("Monuments", "Caravanserai_C_ON");
                     }
             }
+        case BUILDING_PORTORIUM:
+            switch (scenario_property_climate()) {
+                case CLIMATE_NORTHERN:
+                    return assets_get_image_id("Monuments", "Portorium_N_ON");
+                case CLIMATE_DESERT:
+                    return assets_get_image_id("Monuments", "Portorium_S_ON");
+                default:
+                    return assets_get_image_id("Monuments", "Portorium_C_ON");
+            }
         case BUILDING_PINE_TREE:
         case BUILDING_FIR_TREE:
         case BUILDING_OAK_TREE:
