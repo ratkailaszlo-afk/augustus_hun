@@ -1968,6 +1968,16 @@ static void spawn_figure_armoury(building *b)
     }
 }
 
+static void spawn_figure_portorium(building *b)
+{
+    check_labor_problem(b);
+
+    map_point road;
+    if (map_has_road_access(b->x, b->y, b->size, &road)) {
+        spawn_labor_seeker(b, road.x, road.y, 100);
+    }
+}
+
 static void update_native_crop_progress(building *b)
 {
     b->data.industry.progress++;
@@ -2151,6 +2161,9 @@ void building_figure_generate(void)
                     break;
                 case BUILDING_ARMOURY:
                     spawn_figure_armoury(b);
+                    break;
+                case BUILDING_PORTORIUM:
+                    spawn_figure_portorium(b);
                     break;
             }
         }
