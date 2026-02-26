@@ -16,6 +16,7 @@
 #include "map/terrain.h"
 
 #define MAX_HOUSE_LEVELS 20
+#define PRAETORIUM_MAGNUM_TAX_BONUS_PERCENT 12
 
 
 static building_levy_for_type building_levies[] = {
@@ -49,6 +50,7 @@ static building_levy_for_type building_levies[] = {
     {BUILDING_LARGE_MAUSOLEUM, SMALL_MAUSOLEUM_LEVY_MONTHLY},
     {BUILDING_NYMPHAEUM, SMALL_TEMPLE_LEVY_MONTHLY},
     {BUILDING_CARAVANSERAI, CARAVANSERAI_LEVY_MONTHLY },
+    {BUILDING_PRAETORIUM_MAGNUM, PRAETORIUM_MAGNUM_LEVY_MONTHLY },
 };
 
 static tourism_for_type tourism_modifiers[] = {
@@ -116,6 +118,14 @@ int city_finance_estimated_tax_income(void)
 int city_finance_estimated_wages(void)
 {
     return city_data.finance.estimated_wages;
+}
+
+static int apply_praetorium_tax_bonus(int amount)
+{
+    if (amount <= 0 || !building_monument_working(BUILDING_PRAETORIUM_MAGNUM)) {
+        return amount;
+    }
+    return calc_adjust_with_percentage(amount, 100 + PRAETORIUM_MAGNUM_TAX_BONUS_PERCENT);
 }
 
 void city_finance_process_import(int price)
@@ -238,6 +248,8 @@ void city_finance_estimate_taxes(void)
     int monthly_plebs = calc_adjust_with_percentage(
         city_data.taxes.monthly.collected_plebs / 2,
         city_data.finance.tax_percentage);
+    monthly_patricians = apply_praetorium_tax_bonus(monthly_patricians);
+    monthly_plebs = apply_praetorium_tax_bonus(monthly_plebs);
     int estimated_rest_of_year = (12 - game_time_month()) * (monthly_patricians + monthly_plebs);
 
     city_data.finance.this_year.income.taxes =
@@ -298,6 +310,8 @@ static void collect_monthly_taxes(void)
     int collected_plebs = calc_adjust_with_percentage(
         city_data.taxes.monthly.collected_plebs / 2,
         city_data.finance.tax_percentage);
+    collected_patricians = apply_praetorium_tax_bonus(collected_patricians);
+    collected_plebs = apply_praetorium_tax_bonus(collected_plebs);
     int collected_total = collected_patricians + collected_plebs;
 
     city_data.taxes.yearly.collected_patricians += collected_patricians;

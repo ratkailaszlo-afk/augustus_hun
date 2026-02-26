@@ -154,6 +154,17 @@ static const monument_type city_mint = {
     }
 };
 
+static const monument_type praetorium_magnum = {
+    .phases    = 5,
+    .resources = {
+        { [ARCHITECTS] = 1, [RESOURCE_TIMBER] = 30, [RESOURCE_CLAY] = 15 },
+        { [ARCHITECTS] = 1, [RESOURCE_MARBLE] = 20, [RESOURCE_IRON] = 10 },
+        { [ARCHITECTS] = 1, [RESOURCE_FURNITURE] = 10, [RESOURCE_WEAPONS] = 10, [RESOURCE_WINE] = 10 },
+        { [ARCHITECTS] = 1, [RESOURCE_MARBLE] = 25, [RESOURCE_TIMBER] = 15 },
+        { NOTHING }
+    }
+};
+
 static const monument_type *MONUMENT_TYPES[BUILDING_TYPE_MAX] = {
     [BUILDING_GRAND_TEMPLE_CERES]   = &grand_temple,
     [BUILDING_GRAND_TEMPLE_NEPTUNE] = &grand_temple,
@@ -174,7 +185,8 @@ static const monument_type *MONUMENT_TYPES[BUILDING_TYPE_MAX] = {
     [BUILDING_LARGE_MAUSOLEUM]      = &large_mausoleum,
     [BUILDING_SMALL_MAUSOLEUM]      = &small_mausoleum,
     [BUILDING_CARAVANSERAI]         = &caravanserai,
-    [BUILDING_CITY_MINT]            = &city_mint
+    [BUILDING_CITY_MINT]            = &city_mint,
+    [BUILDING_PRAETORIUM_MAGNUM]    = &praetorium_magnum
 };
 
 typedef struct {
@@ -289,6 +301,7 @@ int building_monument_is_limited(building_type type)
         case BUILDING_COLOSSEUM:
         case BUILDING_HIPPODROME:
         case BUILDING_CITY_MINT:
+        case BUILDING_PRAETORIUM_MAGNUM:
             return 1;
         default:
             return 0;

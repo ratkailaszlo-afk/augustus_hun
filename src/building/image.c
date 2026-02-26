@@ -711,6 +711,19 @@ int building_image_get(const building *b)
                             return assets_get_image_id("Monuments", "Pantheon On");
                     }
             }
+        case BUILDING_PRAETORIUM_MAGNUM:
+            switch (b->monument.phase) {
+                case MONUMENT_START:
+                    return assets_get_image_id("Monuments", "Pantheon Const 01");
+                case 2:
+                    return assets_get_image_id("Monuments", "Pantheon Const 02");
+                case 3:
+                    return assets_get_image_id("Monuments", "Pantheon Const 03");
+                case 4:
+                    return assets_get_image_id("Monuments", "Pantheon Const 04");
+                default:
+                    return assets_get_image_id("Monuments", "Pantheon Module2");
+            }
         case BUILDING_LIGHTHOUSE:
             switch (b->monument.phase) {
                 case MONUMENT_START:

@@ -16,8 +16,11 @@
 #include "building/variant.h"
 #include "city/buildings.h"
 #include "city/finance.h"
+#include "city/population.h"
+#include "city/ratings.h"
 #include "city/view.h"
 #include "city/warning.h"
+#include "core/lang.h"
 #include "core/config.h"
 #include "core/image.h"
 #include "core/random.h"
@@ -34,6 +37,7 @@
 #include "map/tiles.h"
 #include "map/water.h"
 #include "scenario/property.h"
+#include "translation/translation.h"
 
 
 static void add_fort(int type, building *fort)
@@ -328,6 +332,7 @@ static void add_to_map(int type, building *b, int size, int orientation, int wat
         case BUILDING_GRAND_TEMPLE_MARS:
         case BUILDING_GRAND_TEMPLE_VENUS:
         case BUILDING_PANTHEON:
+        case BUILDING_PRAETORIUM_MAGNUM:
             map_tiles_update_area_roads(b->x, b->y, 9);
             building_monument_set_phase(b, MONUMENT_START);
             if (type == BUILDING_GRAND_TEMPLE_MARS) {
@@ -560,6 +565,23 @@ int building_construction_place_building(building_type type, int x, int y, int e
         }
         if (!city_buildings_has_mess_hall()) {
             city_warning_show(WARNING_NO_MESS_HALL, NEW_WARNING_SLOT);
+            return 0;
+        }
+    }
+
+    if (type == BUILDING_PRAETORIUM_MAGNUM) {
+        if (!city_buildings_has_senate()) {
+            city_warning_show(WARNING_SENATE_NEEDED, NEW_WARNING_SLOT);
+            city_warning_show(WARNING_BUILD_SENATE, NEW_WARNING_SLOT);
+            return 0;
+        }
+        if (!building_count_active(BUILDING_WORKCAMP) ||
+            !building_count_active(BUILDING_ARCHITECT_GUILD) ||
+            city_population() < 10000 ||
+            city_rating_culture() < 55 ||
+            city_rating_prosperity() < 60 ||
+            city_rating_peace() < 70) {
+            city_warning_show_custom(translation_for(TR_CITY_WARNING_PRAETORIUM_REQUIREMENTS), NEW_WARNING_SLOT);
             return 0;
         }
     }

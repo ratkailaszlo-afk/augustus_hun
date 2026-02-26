@@ -2,6 +2,7 @@
 
 #include "assets/assets.h"
 #include "building/building.h"
+#include "building/monument.h"
 #include "city/constants.h"
 #include "core/dir.h"
 #include "game/resource.h"
@@ -168,4 +169,30 @@ void window_building_draw_obelisk(building_info_context *c)
     text_draw_centered(translation_for(TR_BUILDING_OBELISK),
         c->x_offset, c->y_offset + 10, 16 * c->width_blocks, FONT_LARGE_BLACK, 0);
     window_building_draw_description_at(c, 96, CUSTOM_TRANSLATION, TR_BUILDING_OBELISK_DESC);
+}
+
+void window_building_draw_praetorium_magnum(building_info_context *c)
+{
+    c->help_id = 77;
+    window_building_play_sound(c, "wavs/senate.wav");
+    outer_panel_draw(c->x_offset, c->y_offset, c->width_blocks, c->height_blocks);
+
+    building *b = building_get(c->building_id);
+    if (b->monument.phase == MONUMENT_FINISHED) {
+        c->advisor_button = ADVISOR_RATINGS;
+        text_draw_centered(translation_for(TR_BUILDING_PRAETORIUM_MAGNUM),
+            c->x_offset, c->y_offset + 10, 16 * c->width_blocks, FONT_LARGE_BLACK, 0);
+        window_building_draw_description_at(c, 52, CUSTOM_TRANSLATION, TR_BUILDING_PRAETORIUM_MAGNUM_DESC);
+
+        inner_panel_draw(c->x_offset + 16, c->y_offset + 146, c->width_blocks - 2, 4);
+        window_building_draw_employment(c, 150);
+        window_building_draw_risks(c, c->x_offset + c->width_blocks * BLOCK_SIZE - 76, c->y_offset + 154);
+    } else {
+        text_draw_centered(translation_for(TR_BUILDING_PRAETORIUM_MAGNUM),
+            c->x_offset, c->y_offset + 10, 16 * c->width_blocks, FONT_LARGE_BLACK, 0);
+        window_building_draw_monument_construction_process(c,
+            TR_BUILDING_PRAETORIUM_MAGNUM_PHASE_1,
+            TR_BUILDING_PRAETORIUM_MAGNUM_PHASE_1_TEXT,
+            TR_BUILDING_MONUMENT_CONSTRUCTION_DESC);
+    }
 }

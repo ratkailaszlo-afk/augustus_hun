@@ -63,7 +63,7 @@ static int show_building_food_stocks(const building *b)
 
 static int show_building_tax_income(const building *b)
 {
-    return b->type == BUILDING_FORUM || b->type == BUILDING_SENATE;
+    return b->type == BUILDING_FORUM || b->type == BUILDING_SENATE || b->type == BUILDING_PRAETORIUM_MAGNUM;
 }
 
 static int show_building_water(const building *b)

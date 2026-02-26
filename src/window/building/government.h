@@ -23,4 +23,6 @@ void window_building_draw_pond(building_info_context* c);
 
 void window_building_draw_obelisk(building_info_context* c);
 
+void window_building_draw_praetorium_magnum(building_info_context *c);
+
 #endif // WINDOW_BUILDING_GOVERNMENT_H

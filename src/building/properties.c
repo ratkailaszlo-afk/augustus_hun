@@ -1921,6 +1921,17 @@ static building_properties properties[BUILDING_TYPE_MAX] = {
         .building_model_data = {.cost = 450, .desirability_value = -4, .desirability_step = 1,
             .desirability_step_size = 2, .desirability_range = 3, .laborers = 12}
      },
+     [BUILDING_PRAETORIUM_MAGNUM] = {
+        .size = 5,
+        .fire_proof = 1,
+        .sound_id = SOUND_CITY_SENATE,
+        .draw_desirability_range = 1,
+        .custom_asset.group = "Monuments",
+        .custom_asset.id = "Pantheon Off",
+        .event_data.attr = "praetorium_magnum",
+        .building_model_data = {.cost = 1200, .desirability_value = 6, .desirability_step = 1,
+            .desirability_step_size = 1, .desirability_range = 6, .laborers = 45}
+     },
      [BUILDING_ROOFED_GARDEN_WALL] = {
         .venus_gt_bonus = 1,
         .size = 1,

@@ -262,6 +262,7 @@ static int get_height_id(void)
             case BUILDING_FORT_ARCHERS:
             case BUILDING_MESS_HALL:
             case BUILDING_CITY_MINT:
+            case BUILDING_PRAETORIUM_MAGNUM:
             case BUILDING_BARRACKS:
             case BUILDING_GRANARY:
             case BUILDING_WAREHOUSE:
@@ -708,6 +709,8 @@ static void draw_background(void)
             window_building_draw_architect_guild(&context);
         } else if (btype == BUILDING_PORTORIUM) {
             window_building_draw_portorium(&context);
+        } else if (btype == BUILDING_PRAETORIUM_MAGNUM) {
+            window_building_draw_praetorium_magnum(&context);
         } else if (btype == BUILDING_TAVERN) {
             if (context.show_special_orders) {
                 window_building_draw_distributor_orders(&context, translation_for(TR_TAVERN_SPECIAL_ORDERS_HEADER));

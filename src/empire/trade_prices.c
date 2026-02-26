@@ -11,6 +11,7 @@
 #define MIN_PRICE 1
 #define PORTORIUM_EXPORT_BONUS_PERCENT 10
 #define PORTORIUM_IMPORT_DISCOUNT_PERCENT 10
+#define PRAETORIUM_IMPORT_DISCOUNT_PERCENT 10
 
 struct trade_price {
     int32_t buy;
@@ -66,6 +67,20 @@ static int trade_get_portorium_factor(int percent)
     return portorium_percent;
 }
 
+static int trade_get_praetorium_factor(int percent)
+{
+    int praetorium_percent = 0;
+
+    int praetorium_id = building_monument_working(BUILDING_PRAETORIUM_MAGNUM);
+    if (praetorium_id) {
+        building *b = building_get(praetorium_id);
+        if (b && b->state == BUILDING_STATE_IN_USE) {
+            praetorium_percent = trade_percentage_from_laborers(percent, b);
+        }
+    }
+    return praetorium_percent;
+}
+
 static int trade_factor_sell(int land_trader)
 {
     int percent = 0;
@@ -111,6 +126,7 @@ static int trade_factor_buy(int land_trader)
         }
     }
     percent -= trade_get_portorium_factor(PORTORIUM_IMPORT_DISCOUNT_PERCENT);
+    percent -= trade_get_praetorium_factor(PRAETORIUM_IMPORT_DISCOUNT_PERCENT);
     return percent;
 }
 

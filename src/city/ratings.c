@@ -2,6 +2,7 @@
 
 #include "building/building.h"
 #include "building/count.h"
+#include "building/monument.h"
 #include "building/properties.h"
 #include "city/culture.h"
 #include "city/data_private.h"
@@ -16,6 +17,7 @@
 
 #define MONUMENT_CULTURE_BONUS 6
 #define GAMES_MONTHLY_FAVOUR_BONUS 2
+#define PRAETORIUM_MAGNUM_FAVOR_BONUS 5
 
 int city_rating_culture(void)
 {
@@ -641,6 +643,10 @@ static void update_favor_rating(int is_yearly_update, int is_monthly_update)
                 city_data.ratings.favor -= 2;
                 city_data.ratings.favor_milestone_penalty = 2;
             }
+        }
+
+        if (building_monument_working(BUILDING_PRAETORIUM_MAGNUM)) {
+            city_data.ratings.favor += PRAETORIUM_MAGNUM_FAVOR_BONUS;
         }
 
         if (city_data.ratings.favor < city_data.ratings.favor_last_year) {

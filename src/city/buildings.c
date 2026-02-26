@@ -87,6 +87,16 @@ int city_buildings_get_portorium(void)
     return get_first_working_building(BUILDING_PORTORIUM)->id;
 }
 
+int city_buildings_has_praetorium_magnum(void)
+{
+    return city_buildings_get_praetorium_magnum() != 0;
+}
+
+int city_buildings_get_praetorium_magnum(void)
+{
+    return get_first_working_building(BUILDING_PRAETORIUM_MAGNUM)->id;
+}
+
 int city_buildings_triumphal_arch_available(void)
 {
     return city_data.building.triumphal_arches_available > city_data.building.triumphal_arches_placed;
